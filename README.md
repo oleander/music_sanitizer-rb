@@ -1,24 +1,18 @@
 # MusicSanitizer
 
-TODO: Write a gem description
+Sanitizes music related data. Used internally @ [Radiofy](http://radiofy.se).
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'music_sanitizer'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install music_sanitizer
 
 ## Usage
 
-TODO: Write usage instructions here
+``` ruby
+MusicSanitizer::Processor.new("Will.I.Am Ft. Justin Bieber").process # => "will.i.am"
+```
+
+Take a look at the `spec/processor_spec.rb` file for more examples.
 
 ## Contributing
 
