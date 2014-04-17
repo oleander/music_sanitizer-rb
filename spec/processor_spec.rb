@@ -51,33 +51,13 @@ describe MusicSanitizer::Processor do
     it "A -- B => A B" do
       MusicSanitizer::Processor.new("A -- B").process.should eq("a b")
     end
-    
-    it "123 A B => A B" do
-      MusicSanitizer::Processor.new("123 A B").process.should eq("a b")
-    end
-    
-    it "123 A B.mp3 => A B" do
-      MusicSanitizer::Processor.new("123 A B.mp3").process.should eq("a b")
-    end
-    
-    it "01. A B => A B" do
-      MusicSanitizer::Processor.new("01. A B").process.should eq("a b")
-    end
-    
-    it " 01. A B => A B" do
-      MusicSanitizer::Processor.new(" 01. A B").process.should eq("a b")
-    end
-    
-    it "123 A B.mp3(whitespace) => A B" do
-      MusicSanitizer::Processor.new("123 A B.mp3 ").process.should eq("a b")
-    end
-    
+        
     it "A_B_C_D_E => A B C D E" do
       MusicSanitizer::Processor.new("A_B_C_D_E").process.should eq("a b c d e")
     end
     
     it "100_A=> A" do
-      MusicSanitizer::Processor.new("100_A").process.should eq("a")
+      MusicSanitizer::Processor.new("100_A").process.should eq("100 a")
     end
     
     it "don't => don't (no change)" do
@@ -145,6 +125,10 @@ describe MusicSanitizer::Processor do
     it "should handle non ending (" do
       MusicSanitizer::Processor.new("Can't Hold Us (Hook Up Front/Intro Radio Edit/Cc Cleane").
         process.should eq("can't hold us")
+    end
+
+    it "should handle '2ne1'" do
+      MusicSanitizer::Processor.new("2ne1").process.should eq("2ne1")
     end
   end
 

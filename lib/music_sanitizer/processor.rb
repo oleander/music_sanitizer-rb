@@ -25,10 +25,9 @@ module MusicSanitizer
         /\.mp3$/, 
         /\[[^\]]*\]/, 
         /".*"/,  
-        /(\s+|^)'.*'(\s+|$)/,
-        /^(\d+.*?[^a-z]+?)/i
+        /(\s+|^)'.*'(\s+|$)/
       ].each do |reg|
-        string = string.gsub(reg, ' ').strip
+        string = string.gsub(reg, " ").strip
       end
       
       [
