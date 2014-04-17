@@ -120,4 +120,25 @@ describe MusicSanitizer::Processor do
   it "handles 'I was made for loving you Official FULL HD'" do
     MusicSanitizer::Processor.new("I was made for loving you Official FULL HD").process.should eq("i was made for loving you")
   end
+
+  it "handles 'Will.I.Am Ft. Justin Bieber'" do
+    MusicSanitizer::Processor.new("Will.I.Am Ft. Justin Bieber").process.should eq("will.i.am")
+  end 
+
+  it "handles `" do
+    MusicSanitizer::Processor.new("Feelin` Myself").process.should eq("feelin' myself")
+  end
+
+  it "handles ´" do
+    MusicSanitizer::Processor.new("Feelin´ Myself").process.should eq("feelin' myself")
+  end
+
+  it "handles 'S & M (Britney Version)'" do
+    MusicSanitizer::Processor.new("S & M (Britney Version)").process.should eq("s & m")
+  end
+
+  it "should handle non ending (" do
+    MusicSanitizer::Processor.new("Can't Hold Us (Hook Up Front/Intro Radio Edit/Cc Cleane").
+      process.should eq("can't hold us")
+  end
 end

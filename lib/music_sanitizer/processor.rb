@@ -2,6 +2,7 @@ module MusicSanitizer
   class Processor
     IGNORE = YAML.load_file(File.join(MusicSanitizer.root, "lists/ignore.yml"))
     EXCLUDE = YAML.load_file(File.join(MusicSanitizer.root, "lists/exclude.yml"))
+
     def initialize(content)
       @content = content
     end
@@ -12,6 +13,12 @@ module MusicSanitizer
       EXCLUDE.each do |exclude|
         string = string.gsub(/[^ ]*#{exclude}.*$/i, "")
       end
+
+      # Split
+      string = string.split(/ft\.\s+/i).first
+
+      # Sub
+      string = string.gsub(/´/, "'").gsub(/`/, "'")
 
       # Song - A "abc def" => Song - A
       # Song - A [B + C] => Song - A
@@ -28,7 +35,7 @@ module MusicSanitizer
       end
       
       [
-        /\(.+?\)/m, 
+        /\(.+?(\)|$)/m, 
         /[^a-z0-9]feat(.*?)\s*[^\s]+/i, 
         /[-]+/, 
         /[\s]+/m, 
