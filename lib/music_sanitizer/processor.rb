@@ -14,9 +14,6 @@ module MusicSanitizer
         string = string.gsub(/[^ ]*#{exclude}.*$/i, "")
       end
 
-      # Split
-      string = string.split(/ft\.\s+/i).first
-
       # Sub
       string = string.gsub(/´/, "'").gsub(/`/, "'")
 
@@ -43,6 +40,12 @@ module MusicSanitizer
       ].each do |reg|
         string = string.gsub(reg, " ").strip
       end
+
+      # Split
+      # A ft. B => A
+      string = string.split(/ft\.\s+/i).first
+      # A + B => A
+      string = string.split(/\s+\+\s+/).first
 
       EXCLUDE.each do |exclude|
         string = string.gsub(/#{exclude}.*$/i, "")

@@ -138,6 +138,10 @@ describe MusicSanitizer::Processor do
       MusicSanitizer::Processor.new("S & M (Britney Version)").process.should eq("s & m")
     end
 
+    it "handles 'A + B" do
+      MusicSanitizer::Processor.new("A + B").process.should eq("a")
+    end
+
     it "should handle non ending (" do
       MusicSanitizer::Processor.new("Can't Hold Us (Hook Up Front/Intro Radio Edit/Cc Cleane").
         process.should eq("can't hold us")
