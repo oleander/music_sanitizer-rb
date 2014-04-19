@@ -31,7 +31,7 @@ module MusicSanitizer
       end
       
       [
-        /\(.+?(\)|$)/m, 
+        /\(.*?(\)|$)/m, 
         /[^a-z0-9]feat(.*?)\s*[^\s]+/i, 
         /[-]+/, 
         /[\s]+/m, 

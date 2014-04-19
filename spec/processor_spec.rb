@@ -125,6 +125,7 @@ describe MusicSanitizer::Processor do
     it "should handle non ending (" do
       MusicSanitizer::Processor.new("Can't Hold Us (Hook Up Front/Intro Radio Edit/Cc Cleane").
         process.should eq("can't hold us")
+      MusicSanitizer::Processor.new("Turn Up For A Check (").process.should eq("turn up for a check")
     end
 
     it "should handle '2ne1'" do
