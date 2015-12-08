@@ -131,6 +131,10 @@ describe MusicSanitizer::Processor do
     it "should handle '2ne1'" do
       MusicSanitizer::Processor.new("2ne1").process.should eq("2ne1")
     end
+
+    it "handles empty string" do
+      MusicSanitizer::Processor.new("").process.should be_nil
+    end
   end
 
   context "ignore?" do

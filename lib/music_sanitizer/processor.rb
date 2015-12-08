@@ -1,3 +1,5 @@
+require "yaml"
+
 module MusicSanitizer
   class Processor
     IGNORE = YAML.load_file(File.join(MusicSanitizer.root, "lists/ignore.yml"))
@@ -39,6 +41,8 @@ module MusicSanitizer
       ].each do |reg|
         string = string.gsub(reg, " ").strip
       end
+
+      return if string.empty?
 
       # Split
       # A ft. B => A
