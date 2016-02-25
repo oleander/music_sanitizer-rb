@@ -133,8 +133,9 @@ describe MusicSanitizer::Processor do
     end
 
     it "handles empty string" do
-      MusicSanitizer::Processor.new("").process.should be_nil
+      MusicSanitizer::Processor.new("").process.should be_empty
       MusicSanitizer::Processor.new(nil).process.should be_nil
+      MusicSanitizer::Processor.new("   ").process.should be_empty
     end
   end
 

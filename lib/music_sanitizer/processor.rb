@@ -10,7 +10,11 @@ module MusicSanitizer
     end
 
     def process
-      string = @content.to_s.strip
+      return nil if @content.nil?
+
+      string = @content.strip
+
+      return "" if string.empty?
 
       EXCLUDE.each do |exclude|
         string = string.gsub(/[^ ]*#{exclude}.*$/i, "")
